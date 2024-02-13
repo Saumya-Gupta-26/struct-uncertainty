@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG  -Wl,-rpath,/usr/local/anaconda3/lib -rdynamic CMakeFiles/full_to_sparse_distance_matrix.dir/src/full_to_sparse_distance_matrix.cpp.o -o full_to_sparse_distance_matrix  -Wl,-rpath,/usr/local/anaconda3/lib /usr/local/anaconda3/lib/libmpicxx.so /usr/local/anaconda3/lib/libmpi.so 

@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG  -Wl,-rpath,/usr/local/anaconda3/lib -rdynamic CMakeFiles/dipha.dir/src/dipha.cpp.o -o dipha  -Wl,-rpath,/usr/local/anaconda3/lib /usr/local/anaconda3/lib/libmpicxx.so /usr/local/anaconda3/lib/libmpi.so 

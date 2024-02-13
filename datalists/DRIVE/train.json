@@ -1,0 +1,19 @@
+{
+    "common":{
+        "activity": "train",
+        "num_classes":2,
+        "img_folder": "/data/saumgupta/DRIVE/training/images",
+        "gt_folder": "/data/saumgupta/DRIVE/training/1st_manual",
+        "segmodel_checkpoint_restore":"/data/saumgupta/crf-dmt/DRIVE/unet/trial7-ce-nosigmoid/checkpoints/model_best.pth",
+        "dataname":"DRIVE",
+        "network":"unet"
+        },
+    "train":{
+        "train_datalist":"./datalists/DRIVE/list-train.csv",
+        "validation_datalist":"./datalists/DRIVE/list-val.csv",
+        "output_folder":"/data/saumgupta/crf-dmt/DRIVE/public-code",
+        "learning_rate":0.001,
+        "num_epochs":1000,
+        "save_every": 10
+    }
+}

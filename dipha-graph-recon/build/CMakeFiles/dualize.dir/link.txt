@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG  -Wl,-rpath,/usr/local/anaconda3/lib -rdynamic CMakeFiles/dualize.dir/src/dualize.cpp.o -o dualize  -Wl,-rpath,/usr/local/anaconda3/lib /usr/local/anaconda3/lib/libmpicxx.so /usr/local/anaconda3/lib/libmpi.so 
