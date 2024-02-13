@@ -2,16 +2,16 @@
     "common":{
         "activity": "test",
         "num_classes":2,
-        "img_folder": "/data/saumgupta/DRIVE/test/images-patches-type2",
-        "gt_folder": "/data/saumgupta/DRIVE/test/1st_manual-png-patches-type2",
-        "segmodel_checkpoint_restore":"/data/saumgupta/crf-dmt/DRIVE/unet/trial7-ce-nosigmoid/checkpoints/model_best.pth",
-        "uncmodel_checkpoint_restore":"/data/saumgupta/crf-dmt/DRIVE/public-code/uncertainty_model_best.pth",
+        "img_folder": "",
+        "gt_folder": "",
+        "segmodel_checkpoint_restore":"",
+        "uncmodel_checkpoint_restore":"",
         "dataname":"DRIVE",
         "network":"unet",
         "gpu":"true"
     },
     "test":{
-        "output_folder":"/data/saumgupta/crf-dmt/DRIVE/public-code",
+        "output_folder":"",
         "MCSamples":10
     }
 }
