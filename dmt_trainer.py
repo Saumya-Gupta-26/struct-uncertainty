@@ -376,9 +376,9 @@ def reconstruct_uncertainty_heatmap(datadir, unc_pred_mu, unc_pred_logvar, img_s
 
 if __name__ == "__main__":
 
-    savedir = "/scr/saumgupta/crf-dmt/testing-temp/data/DRIVE/unet/test-outputs/trial34-mse-dmt-convmlp-Th002/convmlp-imgbatch/03_test/20/blur01_iid001"
-    np_path = "/scr/saumgupta/crf-dmt/testing-temp/data/DRIVE/unet/test-outputs/trial7-ce-nosigmoid/epoch742-npy-dmtedges/03_test/20_384_437_/likelihood_almost01range.npy"
-    imgpath = "/scr/saumgupta/crf-dmt/testing-temp/data/DRIVE/test/images/03_test.tif"
+    savedir = ""
+    np_path = ""
+    imgpath = ""
 
     img = Image.open(imgpath)
     img = transforms.ToTensor()(img)

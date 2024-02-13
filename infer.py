@@ -1,8 +1,3 @@
-'''
-does inference on patch folders
-
-CUDA_VISIBLE_DEVICES=0 python3 infer_ce_dmt_convmlp_uncertainty_heatmap.py --params ./params/DRIVE_test_ce_dmt_mlp_uncertainty.json
-'''
 import torch
 import numpy as np
 

@@ -1,6 +1,3 @@
-'''
-CUDA_VISIBLE_DEVICES=2 python3 train_model_2D_mse_dmt_convmlp_uncertainty.py --params ./params/DRIVE_train_mse_dmt_convmlp_uncertainty.json  &> /scr/saumgupta/crf-dmt/testing-temp/data/DRIVE/unet/trial36-mse-dmt-convmlp-uncertainty-Th002/log.txt
-'''
 import torch
 import numpy as np
 import argparse, json
