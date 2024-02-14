@@ -225,7 +225,7 @@ Dipha_IS_TOP_LEVEL:STATIC=ON
 Dipha_SOURCE_DIR:STATIC=/home/saumgupta/dmt-crf-public-code/dipha-graph-recon
 
 //Executable for running MPI programs.
-MPIEXEC_EXECUTABLE:FILEPATH=/home/saumgupta/.conda/envs/nnunet-mnm/bin/mpiexec
+MPIEXEC_EXECUTABLE:FILEPATH=/usr/local/anaconda3/bin/mpiexec
 
 //Maximum number of processors available to run MPI applications.
 MPIEXEC_MAX_NUMPROCS:STRING=48
