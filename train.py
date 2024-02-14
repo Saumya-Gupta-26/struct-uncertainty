@@ -80,7 +80,7 @@ def train_func_2d(mydict):
         training_set = DRIVE(mydict['train_datalist'], mydict['folders'], "train")
         validation_set = DRIVE(mydict['validation_datalist'], mydict['folders'], "val") # full image takes too long
         n_channels = 3
-        in_channels = 10
+        in_channels = 5
     elif mydict['dataname'].lower() == "fill-your-own-dataset":
         pass
     

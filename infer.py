@@ -84,7 +84,7 @@ if __name__ == "__main__":
     if mydict['dataname'].lower() == "drive":
         test_set = DRIVE_folder(mydict['folder'])
         n_channels = 3
-        in_channels = 10
+        in_channels = 5
     
     elif mydict['dataname'].lower() == "fill-your-own-dataset":
         pass
