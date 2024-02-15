@@ -1,4 +1,5 @@
 import torch
+from torch_geometric.nn import GCNConv
 
 class UncertaintyModel(torch.nn.Module):
     def __init__(self, in_channels, num_features, hidden_units, p=0.2):
@@ -27,6 +28,39 @@ class UncertaintyModel(torch.nn.Module):
         x = self.dropout(torch.relu(self.fc2(x)))
         x = self.dropout(torch.relu(self.fc3(x)))
 
+        # Two heads
         mu = self.fc4_1(x)
         log_var = self.fc4_2(x)
+        return mu, log_var
+    
+
+
+
+class UncertaintyModel_GNN(torch.nn.Module):
+    def __init__(self, num_features, hidden_units, p=0.2):
+        super(UncertaintyModel_GNN,self).__init__()
+        self.imgconv = torch.nn.Conv2d(in_channels=2, out_channels=6, kernel_size=3, padding='same')
+        self.maxpool = torch.nn.AdaptiveMaxPool2d(1) # will return N,C,1,1 which we will later concat with graph features
+        self.conv1 = GCNConv(num_features, hidden_units)
+        self.conv2 = GCNConv(hidden_units, hidden_units*2)
+        self.conv3_1 = GCNConv(hidden_units*2, 1)  
+        self.conv3_2 = GCNConv(hidden_units*2, 1)
+        self.dropout = torch.nn.Dropout(p)   
+    
+    def forward(self, imgbatch, graph_feats, edge_index, edge_weights): # graph_feats is NxC
+
+        imgbatch = torch.nn.ReLU(self.imgconv(imgbatch))
+        imgbatch = self.maxpool(imgbatch)
+        imgbatch = torch.squeeze(torch.squeeze(imgbatch, dim=3), dim=2)
+
+        graph_feats = torch.concat((imgbatch, graph_feats), dim=1) # concat along channel dim; all other dim are the same value
+
+        graph_feats = self.conv1(graph_feats, edge_index, edge_weights)
+        graph_feats = self.dropout(graph_feats.relu())
+        graph_feats = self.conv2(graph_feats, edge_index, edge_weights)
+        graph_feats = self.dropout(graph_feats.relu())
+
+        # Two heads
+        mu = self.conv3_1(graph_feats)
+        log_var = self.conv3_2(graph_feats)
         return mu, log_var

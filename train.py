@@ -93,10 +93,10 @@ def train_func_2d(mydict):
     elif mydict['network'] == "fill-your-own-network":
         pass
 
-    binary_classifier = UncertaintyModel(in_channels=in_channels, num_features=36, hidden_units=48).float().to(device)
+    unc_regressor = UncertaintyModel(in_channels=in_channels, num_features=36, hidden_units=48).float().to(device)
 
     # Optimizer
-    optimizer = torch.optim.Adam(binary_classifier.parameters(), lr=mydict['learning_rate'], weight_decay=0)
+    optimizer = torch.optim.Adam(unc_regressor.parameters(), lr=mydict['learning_rate'], weight_decay=0)
 
     # Load checkpoint
     if mydict['segmodel_checkpoint_restore'] != "":
@@ -122,7 +122,7 @@ def train_func_2d(mydict):
 
     for epoch in range(mydict['num_epochs']):
         torch.cuda.empty_cache() # cleanup
-        binary_classifier.to(device).train()
+        unc_regressor.to(device).train()
 
         avg_train_loss = 0.0
         cntvar = 0
@@ -143,7 +143,7 @@ def train_func_2d(mydict):
                 unc_input = unc_input.float().to(device)
                 unc_gt = unc_gt.float().to(device)
 
-                unc_pred_mu, unc_pred_sigma = binary_classifier(imgbatch,unc_input)
+                unc_pred_mu, unc_pred_sigma = unc_regressor(imgbatch,unc_input)
                 unc_pred_mu = torch.squeeze(unc_pred_mu, dim=1)
                 unc_pred_sigma = torch.squeeze(unc_pred_sigma, dim=1)
                 
@@ -162,7 +162,7 @@ def train_func_2d(mydict):
 
         validation_start_time = time()
         with torch.no_grad():
-            #binary_classifier.eval() # we want to keep dropout
+            #unc_regressor.eval() # we want to keep dropout
             validation_iterator = iter(validation_generator)
             avg_val_loss = 0.0
             cntvar = 0
@@ -180,7 +180,7 @@ def train_func_2d(mydict):
                     unc_input = unc_input.float().to(device)
                     unc_gt = unc_gt.float().to(device)
 
-                    unc_pred_mu, unc_pred_sigma = binary_classifier(imgbatch,unc_input)
+                    unc_pred_mu, unc_pred_sigma = unc_regressor(imgbatch,unc_input)
                     unc_pred_mu = torch.squeeze(unc_pred_mu, dim=1)
                     unc_pred_sigma = torch.squeeze(unc_pred_sigma, dim=1)
                     
@@ -204,11 +204,11 @@ def train_func_2d(mydict):
                 best_dict['epoch'] = epoch
 
         if epoch == best_dict['epoch']:
-            torch.save(binary_classifier.state_dict(), os.path.join(mydict['output_folder'], "uncertainty_model_best.pth"))
+            torch.save(unc_regressor.state_dict(), os.path.join(mydict['output_folder'], "uncertainty_model_best.pth"))
         print("Best epoch so far: {}\n".format(best_dict))
         # save checkpoint for save_every
         if epoch % mydict['save_every'] == 0:
-            torch.save(binary_classifier.state_dict(), os.path.join(mydict['output_folder'], "uncertainty_model_epoch" + str(epoch) + ".pth"))
+            torch.save(unc_regressor.state_dict(), os.path.join(mydict['output_folder'], "uncertainty_model_epoch" + str(epoch) + ".pth"))
 
 
 
