@@ -30,10 +30,11 @@ make
 ## CITATION
 If you found this work useful, please consider citing it as
 ```
-@article{gupta2023topology,
-  title={Topology-Aware Uncertainty for Image Segmentation},
+@article{gupta2024topology,
+  title={Topology-aware uncertainty for image segmentation},
   author={Gupta, Saumya and Zhang, Yikai and Hu, Xiaoling and Prasanna, Prateek and Chen, Chao},
-  journal={arXiv preprint arXiv:2306.05671},
-  year={2023}
+  journal={Advances in Neural Information Processing Systems},
+  volume={36},
+  year={2024}
 }
 ```
