@@ -26,6 +26,8 @@ make
 - Edit `datalists/DRIVE/infer.json` with your hyperparameter values.
 - Command to run: `CUDA_VISIBLE_DEVICES=7 python3 infer.py --params ./datalists/DRIVE/infer.json`
 
+## Acknowledgement
+The code for computing DMT has been borrowed from [here](https://github.com/wangdingkang/DiscreteMorse) . I would like to thank them because it has formed the basis of this work. I modified their code to output the generated manifolds.
 
 ## CITATION
 If you found this work useful, please consider citing it as
