@@ -16,7 +16,7 @@ from PIL import Image
 
 from dmt_trainer import getData_val, reconstruct_uncertainty_heatmap 
 
-from unc_model import UncertaintyModel
+from unc_model import UncertaintyModel_GNN
 
 def parse_func(args):
     ### Reading the parameters json file
@@ -97,7 +97,7 @@ if __name__ == "__main__":
     elif mydict['network'].lower() == "fill-your-own-network":
         pass
 
-    binary_classifier = UncertaintyModel(in_channels=in_channels, num_features=36, hidden_units=48).float().to(device)
+    binary_classifier = UncertaintyModel_GNN_GNN(in_channels=in_channels, num_features=36, hidden_units=48).float().to(device)
 
     if mydict['gpu']:
         feature_extractor = feature_extractor.to(device)
