@@ -8,7 +8,7 @@ from dataloader import DRIVE
 from unet.unet_model import UNet
 
 from dmt_trainer import getData_train, getData_val
-from unc_model import UncertaintyModel
+from unc_model import UncertaintyModel_GNN
 from utilities import MSE_VAR
 
 def parse_func(args):
@@ -93,7 +93,7 @@ def train_func_2d(mydict):
     elif mydict['network'] == "fill-your-own-network":
         pass
 
-    unc_regressor = UncertaintyModel(in_channels=in_channels, num_features=36, hidden_units=48).float().to(device)
+    unc_regressor = UncertaintyModel_GNN(in_channels=in_channels, num_features=36, hidden_units=48).float().to(device)
 
     # Optimizer
     optimizer = torch.optim.Adam(unc_regressor.parameters(), lr=mydict['learning_rate'], weight_decay=0)
