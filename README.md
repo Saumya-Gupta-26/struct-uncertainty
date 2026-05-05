@@ -29,6 +29,10 @@ make
 ## Acknowledgement
 The code for computing DMT has been borrowed from [here](https://github.com/wangdingkang/DiscreteMorse) . I would like to thank them because it has formed the basis of this work. I modified their code to output the generated manifolds.
 
+## Related Repositories
+- Official 3D: https://github.com/Saumya-Gupta-26/struct-uncertainty-3D.git
+- 3D Slicer Plug-in: https://github.com/TopoXLab/3d-slicer-uncertainty-plugin.git
+
 ## CITATION
 If you found this work useful, please consider citing it as
 ```
